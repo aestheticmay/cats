@@ -11,8 +11,10 @@
 		13968B7828F9C27D0004DC10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B7728F9C27D0004DC10 /* ViewController.swift */; };
 		13968B7D28F9C27F0004DC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13968B7C28F9C27F0004DC10 /* Assets.xcassets */; };
 		13968B8028F9C27F0004DC10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13968B7E28F9C27F0004DC10 /* LaunchScreen.storyboard */; };
-		13968B8C28F9D2060004DC10 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B8B28F9D2060004DC10 /* RegistrationView.swift */; };
 		13968B8E28FA9F300004DC10 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B8D28FA9F300004DC10 /* RegistrationViewController.swift */; };
+		13CCBD5828FC1B260047B29D /* RegistrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5728FC1B260047B29D /* RegistrationCell.swift */; };
+		13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */; };
+		13CCBD5C28FC1DA70047B29D /* RegistrationTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5B28FC1DA70047B29D /* RegistrationTextFields.swift */; };
 		ED8F0576BED1F041F0EFFC33 /* Pods_cats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7052A56935B9924CBDA712 /* Pods_cats.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +25,10 @@
 		13968B7C28F9C27F0004DC10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13968B7F28F9C27F0004DC10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13968B8128F9C27F0004DC10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13968B8B28F9D2060004DC10 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		13968B8D28FA9F300004DC10 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		13CCBD5728FC1B260047B29D /* RegistrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCell.swift; sourceTree = "<group>"; };
+		13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCatCell.swift; sourceTree = "<group>"; };
+		13CCBD5B28FC1DA70047B29D /* RegistrationTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextFields.swift; sourceTree = "<group>"; };
 		3C4B43AB8CBF58F74A655C3B /* Pods-cats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cats.release.xcconfig"; path = "Target Support Files/Pods-cats/Pods-cats.release.xcconfig"; sourceTree = "<group>"; };
 		71DCC45F6F080D8D8897D7B7 /* Pods-cats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cats.debug.xcconfig"; path = "Target Support Files/Pods-cats/Pods-cats.debug.xcconfig"; sourceTree = "<group>"; };
 		DA7052A56935B9924CBDA712 /* Pods_cats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,9 +80,11 @@
 		13968B8728F9D19F0004DC10 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				13968B8A28F9D1EA0004DC10 /* Controller */,
-				13968B8928F9D1E20004DC10 /* View */,
+				13CCBD5728FC1B260047B29D /* RegistrationCell.swift */,
+				13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */,
+				13CCBD5B28FC1DA70047B29D /* RegistrationTextFields.swift */,
 				13968B8828F9D1D10004DC10 /* Model */,
+				13968B8A28F9D1EA0004DC10 /* Controller */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -88,14 +94,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		13968B8928F9D1E20004DC10 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				13968B8B28F9D2060004DC10 /* RegistrationView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		13968B8A28F9D1EA0004DC10 /* Controller */ = {
@@ -237,10 +235,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13968B8C28F9D2060004DC10 /* RegistrationView.swift in Sources */,
 				13968B7828F9C27D0004DC10 /* ViewController.swift in Sources */,
 				13968B8E28FA9F300004DC10 /* RegistrationViewController.swift in Sources */,
 				13968B7428F9C27D0004DC10 /* AppDelegate.swift in Sources */,
+				13CCBD5C28FC1DA70047B29D /* RegistrationTextFields.swift in Sources */,
+				13CCBD5828FC1B260047B29D /* RegistrationCell.swift in Sources */,
+				13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
