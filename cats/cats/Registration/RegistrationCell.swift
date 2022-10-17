@@ -46,7 +46,7 @@ final class RegistrationCell: UITableViewCell {
         registrationLabel.snp.makeConstraints { make in
             make.height.equalTo(45)
             make.leading.trailing.equalToSuperview().inset(10)
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().inset(15)
             make.bottom.equalToSuperview().inset(10)
         }
     }

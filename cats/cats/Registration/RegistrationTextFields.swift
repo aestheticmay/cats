@@ -13,7 +13,7 @@ final class RegistrationTextFields: UITableViewCell {
     
     let emailTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Your email"
+        tf.placeholder = "E-mail"
         tf.backgroundColor = UIColor.white
         tf.clipsToBounds = true
         tf.textColor = UIColor.black
@@ -21,12 +21,14 @@ final class RegistrationTextFields: UITableViewCell {
         tf.clearsOnBeginEditing = true
         tf.keyboardType = .default
         tf.textAlignment = .left
+        tf.backgroundColor = UIColor.white
+        tf.textColor = UIColor.black
         return tf
     }()
     
     let purposeTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Your purpose"
+        tf.placeholder = "App Description"
         tf.clipsToBounds = true
         tf.backgroundColor = UIColor.white
         tf.textColor = UIColor.black
@@ -34,6 +36,8 @@ final class RegistrationTextFields: UITableViewCell {
         tf.clearsOnBeginEditing = true
         tf.keyboardType = .default
         tf.textAlignment = .left
+        tf.backgroundColor = UIColor.white
+        tf.textColor = UIColor.black
         return tf
     }()
     
@@ -63,11 +67,11 @@ final class RegistrationTextFields: UITableViewCell {
         emailTextField.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(15)
             make.leading.trailing.equalToSuperview().inset(15)
-            make.bottom.equalTo(purposeTextField.snp.top).inset(-15)
+            make.bottom.equalTo(purposeTextField.snp.top).inset(-30)
         }
         
         purposeTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).inset(15)
+            make.top.equalTo(emailTextField.snp.bottom).inset(30)
             make.leading.trailing.equalToSuperview().inset(15)
             make.bottom.equalToSuperview().inset(15)
         }
