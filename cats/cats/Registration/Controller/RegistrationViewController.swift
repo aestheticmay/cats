@@ -24,6 +24,7 @@ final class RegistrationViewController: UIViewController {
         tbv.register(RegistrationCell.self, forCellReuseIdentifier: "RegistrationCell")
         tbv.register(RegistrationCatCell.self, forCellReuseIdentifier: "RegistrationCatCell")
         tbv.register(RegistrationTextFields.self, forCellReuseIdentifier: "RegistrationTextFields")
+        tbv.register(RegistrationCheckList.self, forCellReuseIdentifier: "RegistrationCheckList")
         return tbv
     }()
     
@@ -55,7 +56,7 @@ final class RegistrationViewController: UIViewController {
 extension RegistrationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,8 +66,13 @@ extension RegistrationViewController: UITableViewDelegate, UITableViewDataSource
         } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "RegistrationCatCell", for: indexPath) as? RegistrationCatCell else { return UITableViewCell() }
             return cell
+        } else if indexPath.row == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RegistrationTextFields", for: indexPath) as? RegistrationTextFields else { return UITableViewCell()}
+            return cell
+            
+            
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RegistrationTextFields", for: indexPath) as? RegistrationTextFields else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RegistrationCheckList", for: indexPath) as? RegistrationCheckList else { return UITableViewCell() }
             return cell
         }
     }
