@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		134B205E28FD6504004A0342 /* RegistrationCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B205D28FD6504004A0342 /* RegistrationCheckList.swift */; };
+		134B20652904386C004A0342 /* UIButton-custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B20642904386C004A0342 /* UIButton-custom.swift */; };
 		13968B7428F9C27D0004DC10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B7328F9C27D0004DC10 /* AppDelegate.swift */; };
 		13968B7828F9C27D0004DC10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B7728F9C27D0004DC10 /* ViewController.swift */; };
 		13968B7D28F9C27F0004DC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13968B7C28F9C27F0004DC10 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		134B205D28FD6504004A0342 /* RegistrationCheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCheckList.swift; sourceTree = "<group>"; };
+		134B20642904386C004A0342 /* UIButton-custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-custom.swift"; sourceTree = "<group>"; };
 		13968B7028F9C27D0004DC10 /* cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13968B7328F9C27D0004DC10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13968B7728F9C27D0004DC10 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +50,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		134B20632904384E004A0342 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				134B20642904386C004A0342 /* UIButton-custom.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		13968B6728F9C27D0004DC10 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +79,7 @@
 		13968B7228F9C27D0004DC10 /* cats */ = {
 			isa = PBXGroup;
 			children = (
+				134B20632904384E004A0342 /* Helpers */,
 				13968B8728F9D19F0004DC10 /* Registration */,
 				13968B7328F9C27D0004DC10 /* AppDelegate.swift */,
 				13968B7728F9C27D0004DC10 /* ViewController.swift */,
@@ -240,6 +251,7 @@
 			files = (
 				13968B7828F9C27D0004DC10 /* ViewController.swift in Sources */,
 				134B205E28FD6504004A0342 /* RegistrationCheckList.swift in Sources */,
+				134B20652904386C004A0342 /* UIButton-custom.swift in Sources */,
 				13968B8E28FA9F300004DC10 /* RegistrationViewController.swift in Sources */,
 				13968B7428F9C27D0004DC10 /* AppDelegate.swift in Sources */,
 				13CCBD5C28FC1DA70047B29D /* RegistrationTextFields.swift in Sources */,

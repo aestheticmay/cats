@@ -20,8 +20,12 @@ final class RegistrationCheckList: UITableViewCell {
     }()
     
     var button1: UIButton = {
-        let btn = UIButton()
-        btn.backgroundColor = UIColor.red
+        let btn = UIButton(type: .custom)
+        btn.clipsToBounds = true
+     //   btn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        btn.setTitleColor(.black, for: .normal)
+        btn.setTitle("Test", for: .normal)
+        btn.configureWithLeftImage("circle")
         return btn
     }()
     
@@ -37,6 +41,22 @@ final class RegistrationCheckList: UITableViewCell {
         return btn
     }()
     
+    private let privacyButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Privacy Policy", for: .normal)
+        btn.titleLabel?.numberOfLines = 0
+        btn.setTitleColor(UIColor.systemBlue, for: .normal)
+        return btn
+    }()
+    
+    private let termsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Terms & Conditions", for: .normal)
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        button.titleLabel?.numberOfLines = 0
+        return button
+    }()
+
     // Mark: Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -48,7 +68,7 @@ final class RegistrationCheckList: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // Mark: Private Methods
     
     private func setupCellStyle() {
@@ -61,6 +81,8 @@ final class RegistrationCheckList: UITableViewCell {
         addSubview(button1)
         addSubview(button2)
         addSubview(button3)
+        addSubview(privacyButton)
+        addSubview(termsButton)
         
         title.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)
@@ -83,7 +105,19 @@ final class RegistrationCheckList: UITableViewCell {
         button3.snp.makeConstraints { make in
             make.top.equalTo(button2.snp.bottom).inset(15)
             make.leading.trailing.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(privacyButton.snp.top).inset(-10)
+        }
+        
+        privacyButton.snp.makeConstraints { make in
+            make.top.equalTo(button3.snp.bottom).inset(10)
+            make.leading.trailing.equalToSuperview().inset(15)
+            make.bottom.equalTo(termsButton.snp.top).inset(-5)
+        }
+        
+        termsButton.snp.makeConstraints { make in
+            make.top.equalTo(privacyButton.snp.bottom).inset(5)
+            make.leading.trailing.equalToSuperview().inset(15)
+            make.bottom.equalToSuperview().inset(20)
         }
     }
 }
