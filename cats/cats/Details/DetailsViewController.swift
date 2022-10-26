@@ -17,7 +17,6 @@ final class DetailsViewController: UIViewController {
         let img = UIImageView()
         img.image = UIImage(named: "cuteCat")
         img.contentMode = .scaleAspectFit
-        img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
     
@@ -26,7 +25,6 @@ final class DetailsViewController: UIViewController {
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
         lbl.textColor = UIColor.black
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -34,7 +32,6 @@ final class DetailsViewController: UIViewController {
         let lbl = UILabel()
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -44,7 +41,6 @@ final class DetailsViewController: UIViewController {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -53,9 +49,7 @@ final class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        //  setupLayout()
-        setupScrollView()
+        setupLayout()
         configure()
     }
     
@@ -74,54 +68,8 @@ final class DetailsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         view.backgroundColor = UIColor.white
     }
-    /*
-     private func setupLayout() {
-     
-     let margins = view.layoutMarginsGuide
-     view.backgroundColor = UIColor.white
-     view.addSubview(scrollView)
-     scrollView.addSubview(scrollStackViewContainer)
-     scrollStackViewContainer.addArrangedSubview(imageView)
-     scrollStackViewContainer.addArrangedSubview(breedsLabel)
-     scrollStackViewContainer.addArrangedSubview(categoriesLabel)
-     
-     scrollView.snp.makeConstraints { make in
-     make.leading.trailing.equalToSuperview()
-     make.top.equalTo(margins.snp.top)
-     make.bottom.equalTo(margins.snp.bottom)
-     }
-     
-     scrollStackViewContainer.snp.makeConstraints { make in
-     make.leading.trailing.equalTo(scrollView)
-     make.top.equalTo(scrollView.snp.top)
-     make.bottom.equalTo(scrollView.snp.bottom)
-     make.width.equalTo(scrollView.snp.width)
-     }
-     
-     imageView.snp.makeConstraints { make in
-     make.centerX.equalToSuperview()
-     make.width.equalTo(UIScreen.main.bounds.width - 30)
-     make.height.equalTo((UIScreen.main.bounds.width - 30) * (imageView.image?.size.height ?? 0) / (imageView.image?.size.width ?? 0))
-     make.top.equalTo(view.safeAreaLayoutGuide)
-     make.bottom.equalTo(breedsLabel.snp.top).inset(-15)
-     }
-     
-     breedsLabel.snp.makeConstraints { make in
-     make.top.equalTo(imageView.snp.bottom).inset(15)
-     make.leading.equalToSuperview().inset(20)
-     make.bottom.equalTo(categoriesLabel.snp.top).inset(-10)
-     make.width.equalTo(100)
-     }
-     
-     categoriesLabel.snp.makeConstraints { make in
-     make.top.equalTo(breedsLabel.snp.bottom).inset(10)
-     make.leading.equalToSuperview().inset(20)
-     make.width.equalTo(100)
-     }
-     }
-     */
-    
-    private func setupScrollView() {
+   
+    private func setupLayout() {
         let margins = view.layoutMarginsGuide
         view.addSubview(scrollView)
         scrollView.addSubview(scrollStackViewContainer)
