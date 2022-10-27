@@ -25,7 +25,7 @@ final class DetailsViewController: UIViewController {
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
         lbl.textColor = UIColor.black
-        lbl.font = UIFont(name: "Times New Roman", size: 30)
+        lbl.font = UIFont(name: "Times New Roman", size: 25)
         return lbl
     }()
     
@@ -33,7 +33,7 @@ final class DetailsViewController: UIViewController {
         let lbl = UILabel()
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
-        lbl.font = UIFont(name: "Times New Roman", size: 30)
+        lbl.font = UIFont(name: "Times New Roman", size: 25)
         return lbl
     }()
     

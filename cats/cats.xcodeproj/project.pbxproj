@@ -13,6 +13,7 @@
 		134B206E2909C016004A0342 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B206D2909C016004A0342 /* DetailsViewController.swift */; };
 		134B20702909C2F5004A0342 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B206F2909C2F5004A0342 /* CatModel.swift */; };
 		134B20742909DCFB004A0342 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B20732909DCFB004A0342 /* ApiClient.swift */; };
+		134B2077290A9805004A0342 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B2076290A9805004A0342 /* TabBarController.swift */; };
 		13968B7428F9C27D0004DC10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B7328F9C27D0004DC10 /* AppDelegate.swift */; };
 		13968B7828F9C27D0004DC10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B7728F9C27D0004DC10 /* ViewController.swift */; };
 		13968B7D28F9C27F0004DC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13968B7C28F9C27F0004DC10 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		134B206D2909C016004A0342 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		134B206F2909C2F5004A0342 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
 		134B20732909DCFB004A0342 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		134B2076290A9805004A0342 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		13968B7028F9C27D0004DC10 /* cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13968B7328F9C27D0004DC10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13968B7728F9C27D0004DC10 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,14 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		134B2075290A97F4004A0342 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				134B2076290A9805004A0342 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		13968B6728F9C27D0004DC10 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +122,7 @@
 		13968B7228F9C27D0004DC10 /* cats */ = {
 			isa = PBXGroup;
 			children = (
+				134B2075290A97F4004A0342 /* TabBar */,
 				134B206C2909C000004A0342 /* Details */,
 				134B20692909BCD5004A0342 /* Model */,
 				134B206629082624004A0342 /* FavoriteImage */,
@@ -286,6 +297,7 @@
 				13CCBD5C28FC1DA70047B29D /* RegistrationTextFields.swift in Sources */,
 				13CCBD5828FC1B260047B29D /* RegistrationCell.swift in Sources */,
 				13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */,
+				134B2077290A9805004A0342 /* TabBarController.swift in Sources */,
 				134B20702909C2F5004A0342 /* CatModel.swift in Sources */,
 				134B2068290826DE004A0342 /* FavoriteImageVC.swift in Sources */,
 				134B20742909DCFB004A0342 /* ApiClient.swift in Sources */,
