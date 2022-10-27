@@ -21,10 +21,7 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailsTabBarController.tabBarItem = firstTabBarItem
-        secondVC.tabBarItem = secondItem
-        
-        viewControllers = [detailsTabBarController, secondVC]
+        configure()
     }
     
     // MARK: - Public Methods
@@ -33,4 +30,11 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         print("selected")
     }
     
+    // MARK: - Private Methods
+    
+    private func configure() {
+        detailsTabBarController.tabBarItem = firstTabBarItem
+        secondVC.tabBarItem = secondItem
+        viewControllers = [detailsTabBarController, secondVC]
+    }
 }
