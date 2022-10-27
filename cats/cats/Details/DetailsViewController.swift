@@ -25,6 +25,7 @@ final class DetailsViewController: UIViewController {
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
         lbl.textColor = UIColor.black
+        lbl.font = UIFont(name: "Times New Roman", size: 30)
         return lbl
     }()
     
@@ -32,7 +33,20 @@ final class DetailsViewController: UIViewController {
         let lbl = UILabel()
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
+        lbl.font = UIFont(name: "Times New Roman", size: 30)
         return lbl
+    }()
+    
+    private lazy var likeButton: UIButton = {
+        let btn = UIButton()
+        let scale = UIImage.SymbolConfiguration(pointSize: 50, weight: .light, scale: .default)
+        let like = UIImage(systemName: "suit.heart")?.withTintColor(UIColor.red)
+        let unlike = UIImage(systemName: "suit.heart.fill", withConfiguration: scale)?.withTintColor(UIColor.red)
+        btn.setImage(unlike, for: .normal)
+        btn.setImage(like, for: .selected)
+        btn.imageView?.contentMode = .scaleAspectFit
+        btn.tintColor = UIColor.red
+        return btn
     }()
     
     private let scrollView = UIScrollView()
@@ -56,8 +70,8 @@ final class DetailsViewController: UIViewController {
     // MARK: - Public Methods
     
     func configure() { //TODO remove later
-        breedsLabel.text = "Breeds: "
-        categoriesLabel.text = "Categories: "
+        breedsLabel.text = "ღ Breeds: "
+        categoriesLabel.text = "ღ Categories: "
     }
     
     // MARK: - Private Methods
@@ -88,6 +102,7 @@ final class DetailsViewController: UIViewController {
         }
         
         scrollStackViewContainer.addArrangedSubview(imageView)
+        scrollStackViewContainer.addArrangedSubview(likeButton)
         scrollStackViewContainer.addArrangedSubview(breedsLabel)
         scrollStackViewContainer.addArrangedSubview(categoriesLabel)
         
@@ -96,20 +111,25 @@ final class DetailsViewController: UIViewController {
             make.width.equalTo(UIScreen.main.bounds.width - 30)
             make.height.equalTo((UIScreen.main.bounds.width - 30) * (imageView.image?.size.height ?? 0) / (imageView.image?.size.width ?? 0))
             make.top.equalToSuperview()
-            make.bottom.equalTo(breedsLabel.snp.top).inset(-15)
+            make.bottom.equalTo(likeButton.snp.top).inset(-15)
+        }
+        
+        likeButton.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).inset(15)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview().inset(10)
+            make.bottom.equalTo(breedsLabel.snp.top).inset(-10)
         }
         
         breedsLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).inset(15)
-            make.leading.equalToSuperview().inset(20)
+            make.top.equalTo(likeButton.snp.bottom).inset(10)
+            make.leading.equalToSuperview().inset(10)
             make.bottom.equalTo(categoriesLabel.snp.top).inset(-10)
-            make.width.equalTo(100)
         }
         
         categoriesLabel.snp.makeConstraints { make in
             make.top.equalTo(breedsLabel.snp.bottom).inset(10)
-            make.leading.equalToSuperview().inset(20)
-            make.width.equalTo(100)
+            make.leading.equalToSuperview().inset(10)
         }
     }
 }
