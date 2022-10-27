@@ -62,7 +62,6 @@ final class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationController()
         setupLayout()
         configure()
     }
@@ -70,20 +69,18 @@ final class DetailsViewController: UIViewController {
     // MARK: - Public Methods
     
     func configure() { //TODO remove later
+    //    title = catModel?.identifier
+        title = "Title"
         breedsLabel.text = "ღ Breeds: "
         categoriesLabel.text = "ღ Categories: "
     }
     
     // MARK: - Private Methods
-    
-    private func setupNavigationController() {
-        navigationController?.navigationBar.backItem?.title = catModel?.identifier
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.tintColor = .white
-        view.backgroundColor = UIColor.white
-    }
    
     private func setupLayout() {
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Academy Engraved LET", size: 25)!]
+        navigationController?.navigationBar.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.white
         let margins = view.layoutMarginsGuide
         view.addSubview(scrollView)
         scrollView.addSubview(scrollStackViewContainer)

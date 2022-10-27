@@ -15,10 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
+        configureControllers()
         
         return true
+    }
+    
+    private func configureControllers() {
+        let detailsVC = DetailsViewController()
+        let registrationVC = RegistrationViewController()
+        let navigationDetailsController = UINavigationController(rootViewController: detailsVC)
+        let navigationRegController = UINavigationController(rootViewController: registrationVC)
+        
+        let tabBarController = UITabBarController()
+        navigationDetailsController.tabBarItem = UITabBarItem(tabBarSystemItem:.search, tag: 0)
+        navigationRegController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        
+        tabBarController.viewControllers = [navigationRegController, navigationDetailsController]
+        window?.rootViewController = tabBarController
     }
 }
 
