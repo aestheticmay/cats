@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class TabBarController: UITabBarController, UITabBarControllerDelegate {
+//final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: - Private Properties
-    
+    /*
     private let detailsTabBarController = DetailsViewController()
     private let firstTabBarItem = UITabBarItem(title: "Details", image: UIImage(systemName: "pencil.circle"), selectedImage: UIImage(systemName: "pencil.cirle.fill"))
     
@@ -38,3 +38,4 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         viewControllers = [detailsTabBarController, secondVC]
     }
 }
+*/

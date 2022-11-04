@@ -22,16 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func configureControllers() {
-        let detailsVC = DetailsViewController()
-        let registrationVC = RegistrationViewController()
-        let navigationDetailsController = UINavigationController(rootViewController: detailsVC)
-        let navigationRegController = UINavigationController(rootViewController: registrationVC)
+        let searchVC = SearchViewController()
+      //  let detailsVC = DetailsViewController()
+        let navigationSearch = UINavigationController(rootViewController: searchVC)
+     //   let navigationDetails = UINavigationController(rootViewController: detailsVC)
         
         let tabBarController = UITabBarController()
-        navigationDetailsController.tabBarItem = UITabBarItem(tabBarSystemItem:.search, tag: 0)
-        navigationRegController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        navigationSearch.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+     //   navigationDetails.tabBarItem = UITabBarItem(tabBarSystemItem: .recents, tag: 1)
         
-        tabBarController.viewControllers = [navigationRegController, navigationDetailsController]
+        tabBarController.viewControllers = [navigationSearch]
         window?.rootViewController = tabBarController
     }
 }

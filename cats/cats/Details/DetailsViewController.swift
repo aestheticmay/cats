@@ -12,6 +12,7 @@ final class DetailsViewController: UIViewController {
     // MARK: - Private Properties
     
     private var catModel: CatModel?
+    private let cats: CatModel
     
     private let imageView: UIImageView = {
         let img = UIImageView()
@@ -58,6 +59,18 @@ final class DetailsViewController: UIViewController {
         return view
     }()
     
+    // MARK: - Init
+    
+    init(cats: CatModel) {
+        self.cats = cats
+        print("test \(cats)")
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Life-Cycle
     
     override func viewDidLoad() {
@@ -66,16 +79,22 @@ final class DetailsViewController: UIViewController {
         configure()
     }
     
-    // MARK: - Public Methods
-    
-    func configure() { //TODO remove later
-    //    title = catModel?.identifier
-        title = "Title"
-        breedsLabel.text = "ღ Breeds: "
-        categoriesLabel.text = "ღ Categories: "
-    }
-    
     // MARK: - Private Methods
+    
+    private func configure() {
+        title = cats.identifier
+        if cats.breeds.isEmpty {
+            breedsLabel.text = "ღ Breeds: unknown"
+        } else {
+            cats.breeds.map { $0.name }.forEach { breedsLabel.text = "ღ Breeds: \($0)" }
+        }
+        
+        if cats.categories.isEmpty {
+            categoriesLabel.text = "ღ Categories: unknown"
+        } else {
+            cats.categories.map { $0.name }.forEach{ breedsLabel.text = "ღ Categories: \($0)" }
+        }
+    }
    
     private func setupLayout() {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Academy Engraved LET", size: 25)!]

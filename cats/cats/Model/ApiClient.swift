@@ -16,7 +16,7 @@ class ApiClient {
     }
     
     enum ApiClientEndpoint {
-        private static let apiHost: String = "https://api.thecatapi.com/v1"
+      //  private static let apiHost: String = "https://api.thecatapi.com/v1"
         
         case allCats
         case breeds
@@ -27,15 +27,15 @@ class ApiClient {
         func urlString() -> String {
             switch self {
             case .allCats:
-                return "\(ApiClientEndpoint.apiHost)/images/search"
+                return "\(Identifiers.baseDomen)/images/search"
             case .breeds:
-                return "\(ApiClientEndpoint.apiHost)/breeds"
+                return "\(Identifiers.baseDomen)/breeds"
             case .categories:
-                return "\(ApiClientEndpoint.apiHost)/categories"
+                return "\(Identifiers.baseDomen)/categories"
             case .favourites:
-                return "\(ApiClientEndpoint.apiHost)/favourites"
+                return "\(Identifiers.baseDomen)/favourites"
             case .uploads:
-                return "\(ApiClientEndpoint.apiHost)/images/upload"
+                return "\(Identifiers.baseDomen)/images/upload"
             }
         }
     }
@@ -44,8 +44,5 @@ class ApiClient {
     
     private let urlSession = URLSession.shared
     private var dataTask: URLSessionDataTask?
-    
-    // MARK: - Public Methods
-    
-   
+
 }
