@@ -45,7 +45,7 @@ final class SearchViewController: UIViewController {
         guard var components = URLComponents(string: ApiClient.ApiClientEndpoint.allCats.urlString()) else { return }
         
         var queryParameters: [String: String] = [:]
-        queryParameters["limit"] = "10"
+        queryParameters["limit"] = "5"
         queryParameters["size"] = "small"
         
         components.queryItems = queryParameters.map({ (key, value) in

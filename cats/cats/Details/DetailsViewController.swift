@@ -16,7 +16,6 @@ final class DetailsViewController: UIViewController {
     
     private let imageView: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "cuteCat")
         img.contentMode = .scaleAspectFit
         return img
     }()
@@ -26,14 +25,6 @@ final class DetailsViewController: UIViewController {
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
         lbl.textColor = UIColor.black
-        lbl.font = UIFont(name: "Times New Roman", size: 25)
-        return lbl
-    }()
-    
-    private let categoriesLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.numberOfLines = 0
-        lbl.textAlignment = .left
         lbl.font = UIFont(name: "Times New Roman", size: 25)
         return lbl
     }()
@@ -63,7 +54,6 @@ final class DetailsViewController: UIViewController {
     
     init(cats: CatModel) {
         self.cats = cats
-        print("test \(cats)")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -83,19 +73,16 @@ final class DetailsViewController: UIViewController {
     
     private func configure() {
         title = cats.identifier
+        DispatchQueue.main.async {
+            self.imageView.loadImage(url: self.cats.imageUrl)
+        }
         if cats.breeds.isEmpty {
             breedsLabel.text = "ღ Breeds: unknown"
         } else {
             cats.breeds.map { $0.name }.forEach { breedsLabel.text = "ღ Breeds: \($0)" }
         }
-        
-        if cats.categories.isEmpty {
-            categoriesLabel.text = "ღ Categories: unknown"
-        } else {
-            cats.categories.map { $0.name }.forEach{ breedsLabel.text = "ღ Categories: \($0)" }
-        }
     }
-   
+    
     private func setupLayout() {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Academy Engraved LET", size: 25)!]
         navigationController?.navigationBar.backgroundColor = UIColor.white
@@ -120,12 +107,11 @@ final class DetailsViewController: UIViewController {
         scrollStackViewContainer.addArrangedSubview(imageView)
         scrollStackViewContainer.addArrangedSubview(likeButton)
         scrollStackViewContainer.addArrangedSubview(breedsLabel)
-        scrollStackViewContainer.addArrangedSubview(categoriesLabel)
         
         imageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.width - 30)
-            make.height.equalTo((UIScreen.main.bounds.width - 30) * (imageView.image?.size.height ?? 0) / (imageView.image?.size.width ?? 0))
+            make.height.equalTo(UIScreen.main.bounds.width - 30)
             make.top.equalToSuperview()
             make.bottom.equalTo(likeButton.snp.top).inset(-15)
         }
@@ -140,12 +126,7 @@ final class DetailsViewController: UIViewController {
         breedsLabel.snp.makeConstraints { make in
             make.top.equalTo(likeButton.snp.bottom).inset(10)
             make.leading.equalToSuperview().inset(10)
-            make.bottom.equalTo(categoriesLabel.snp.top).inset(-10)
-        }
-        
-        categoriesLabel.snp.makeConstraints { make in
-            make.top.equalTo(breedsLabel.snp.bottom).inset(10)
-            make.leading.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview()
         }
     }
 }

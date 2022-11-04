@@ -16,11 +16,9 @@ class ApiClient {
     }
     
     enum ApiClientEndpoint {
-      //  private static let apiHost: String = "https://api.thecatapi.com/v1"
         
         case allCats
         case breeds
-        case categories
         case favourites
         case uploads
         
@@ -30,8 +28,6 @@ class ApiClient {
                 return "\(Identifiers.baseDomen)/images/search"
             case .breeds:
                 return "\(Identifiers.baseDomen)/breeds"
-            case .categories:
-                return "\(Identifiers.baseDomen)/categories"
             case .favourites:
                 return "\(Identifiers.baseDomen)/favourites"
             case .uploads:
