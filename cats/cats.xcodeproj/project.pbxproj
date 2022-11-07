@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		134B205E28FD6504004A0342 /* RegistrationCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B205D28FD6504004A0342 /* RegistrationCheckList.swift */; };
-		134B20652904386C004A0342 /* UIButton-custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B20642904386C004A0342 /* UIButton-custom.swift */; };
+		134B20652904386C004A0342 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B20642904386C004A0342 /* UIButton.swift */; };
 		134B2068290826DE004A0342 /* FavoriteImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B2067290826DE004A0342 /* FavoriteImageVC.swift */; };
 		134B206E2909C016004A0342 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B206D2909C016004A0342 /* DetailsViewController.swift */; };
 		134B20702909C2F5004A0342 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B206F2909C2F5004A0342 /* CatModel.swift */; };
@@ -25,12 +25,14 @@
 		13CCBD5828FC1B260047B29D /* RegistrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5728FC1B260047B29D /* RegistrationCell.swift */; };
 		13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */; };
 		13CCBD5C28FC1DA70047B29D /* RegistrationTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5B28FC1DA70047B29D /* RegistrationTextFields.swift */; };
+		13E48EE529191E32003171EB /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E48EE429191E32003171EB /* UIImageView.swift */; };
+		13E48EE729191E53003171EB /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E48EE629191E53003171EB /* UITableViewCell.swift */; };
 		ED8F0576BED1F041F0EFFC33 /* Pods_cats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7052A56935B9924CBDA712 /* Pods_cats.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		134B205D28FD6504004A0342 /* RegistrationCheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCheckList.swift; sourceTree = "<group>"; };
-		134B20642904386C004A0342 /* UIButton-custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-custom.swift"; sourceTree = "<group>"; };
+		134B20642904386C004A0342 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		134B2067290826DE004A0342 /* FavoriteImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImageVC.swift; sourceTree = "<group>"; };
 		134B206D2909C016004A0342 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		134B206F2909C2F5004A0342 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		13CCBD5728FC1B260047B29D /* RegistrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCell.swift; sourceTree = "<group>"; };
 		13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCatCell.swift; sourceTree = "<group>"; };
 		13CCBD5B28FC1DA70047B29D /* RegistrationTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextFields.swift; sourceTree = "<group>"; };
+		13E48EE429191E32003171EB /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		13E48EE629191E53003171EB /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		3C4B43AB8CBF58F74A655C3B /* Pods-cats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cats.release.xcconfig"; path = "Target Support Files/Pods-cats/Pods-cats.release.xcconfig"; sourceTree = "<group>"; };
 		71DCC45F6F080D8D8897D7B7 /* Pods-cats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cats.debug.xcconfig"; path = "Target Support Files/Pods-cats/Pods-cats.debug.xcconfig"; sourceTree = "<group>"; };
 		DA7052A56935B9924CBDA712 /* Pods_cats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +73,9 @@
 		134B20632904384E004A0342 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				134B20642904386C004A0342 /* UIButton-custom.swift */,
+				134B20642904386C004A0342 /* UIButton.swift */,
+				13E48EE429191E32003171EB /* UIImageView.swift */,
+				13E48EE629191E53003171EB /* UITableViewCell.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -306,15 +312,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				13968B7828F9C27D0004DC10 /* ViewController.swift in Sources */,
+				13E48EE729191E53003171EB /* UITableViewCell.swift in Sources */,
 				137BC90B290AC35500FD3026 /* SearchCell.swift in Sources */,
 				138AA6F12912CDEB00D67AD4 /* BreedsModel.swift in Sources */,
 				134B205E28FD6504004A0342 /* RegistrationCheckList.swift in Sources */,
-				134B20652904386C004A0342 /* UIButton-custom.swift in Sources */,
+				134B20652904386C004A0342 /* UIButton.swift in Sources */,
 				134B206E2909C016004A0342 /* DetailsViewController.swift in Sources */,
 				13968B8E28FA9F300004DC10 /* RegistrationViewController.swift in Sources */,
 				13968B7428F9C27D0004DC10 /* AppDelegate.swift in Sources */,
 				13CCBD5C28FC1DA70047B29D /* RegistrationTextFields.swift in Sources */,
 				13CCBD5828FC1B260047B29D /* RegistrationCell.swift in Sources */,
+				13E48EE529191E32003171EB /* UIImageView.swift in Sources */,
 				134B207A290AA34C004A0342 /* SearchViewController.swift in Sources */,
 				13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */,
 				134B2077290A9805004A0342 /* TabBarController.swift in Sources */,

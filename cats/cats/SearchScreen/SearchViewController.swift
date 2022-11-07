@@ -20,7 +20,7 @@ final class SearchViewController: UIViewController {
         tbv.bounces = false
         tbv.keyboardDismissMode = .onDrag
         tbv.delaysContentTouches = false
-        tbv.register(SearchCell.self, forCellReuseIdentifier: "SearchCell")
+        tbv.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
         return tbv
     }()
     
@@ -45,7 +45,7 @@ final class SearchViewController: UIViewController {
         guard var components = URLComponents(string: ApiClient.ApiClientEndpoint.allCats.urlString()) else { return }
         
         var queryParameters: [String: String] = [:]
-        queryParameters["limit"] = "5"
+        queryParameters["limit"] = "20"
         queryParameters["size"] = "small"
         
         components.queryItems = queryParameters.map({ (key, value) in
@@ -132,9 +132,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as? SearchCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else { return UITableViewCell() }
         let cat = cats[indexPath.row]
         cell.setup(cat)
+        cell.catImageView.image = nil
         return cell
     }
     

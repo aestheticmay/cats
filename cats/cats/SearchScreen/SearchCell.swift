@@ -9,10 +9,10 @@ import UIKit
 import Kingfisher
 
 final class SearchCell: UITableViewCell {
-    
+
     // MARK: - Private Properties
     
-    private let catImageView: UIImageView = {
+    let catImageView: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFit
         img.clipsToBounds = true
@@ -30,10 +30,10 @@ final class SearchCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+   
     override func prepareForReuse() {
         super.prepareForReuse()
-        catImageView.image = nil
+     //   catImageView.image = nil
     }
 
     // MARK: - Private Properties

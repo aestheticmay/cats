@@ -10,8 +10,7 @@ import UIKit
 final class DetailsViewController: UIViewController {
     
     // MARK: - Private Properties
-    
-    private var catModel: CatModel?
+
     private let cats: CatModel
     
     private let imageView: UIImageView = {
@@ -73,11 +72,9 @@ final class DetailsViewController: UIViewController {
     
     private func configure() {
         title = cats.identifier
-        DispatchQueue.main.async {
-            self.imageView.loadImage(url: self.cats.imageUrl)
-        }
+        imageView.loadImage(url: self.cats.imageUrl)
         if cats.breeds.isEmpty {
-            breedsLabel.text = "ღ Breeds: unknown"
+            breedsLabel.text = "ღ Breed: unknown"
         } else {
             cats.breeds.map { $0.name }.forEach { breedsLabel.text = "ღ Breeds: \($0)" }
         }
