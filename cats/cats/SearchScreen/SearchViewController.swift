@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class SearchViewController: UIViewController {
     
@@ -24,7 +25,6 @@ final class SearchViewController: UIViewController {
         return tbv
     }()
     
-    private var cats: [CatModel] = []
     private var catsModel = [CatModel]()
     private let page = 0
     private let pageLimit = 10
@@ -101,7 +101,7 @@ final class SearchViewController: UIViewController {
                 return
             }
             if let actualCats = cats {
-                actualSelf.cats = actualCats
+                actualSelf.catsModel = actualCats
                 DispatchQueue.main.async {
                     completion?()
                     actualSelf.tableView.reloadData()
@@ -128,19 +128,19 @@ final class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cats.count
+        return catsModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else { return UITableViewCell() }
-        let cat = cats[indexPath.row]
+        let cat = catsModel[indexPath.row]
         cell.setup(cat)
-        cell.catImageView.image = nil
+     //   cell.catImageView.image = nil
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailsViewController = DetailsViewController(cats: cats[indexPath.row])
+        let detailsViewController = DetailsViewController(cats: catsModel[indexPath.row])
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }

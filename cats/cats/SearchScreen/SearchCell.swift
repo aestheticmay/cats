@@ -33,13 +33,15 @@ final class SearchCell: UITableViewCell {
    
     override func prepareForReuse() {
         super.prepareForReuse()
-     //   catImageView.image = nil
+        catImageView.image = nil
     }
 
     // MARK: - Private Properties
     
     func setup(_ cat: CatModel) {
-        catImageView.loadImage(url: cat.imageUrl)
+        let url = cat.imageUrl
+        guard let url = url else { return }
+        catImageView.kf.setImage(with: ImageResource(downloadURL: url, cacheKey: url.absoluteString))
     }
     
     private func setupLayout() {

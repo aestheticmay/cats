@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class DetailsViewController: UIViewController {
     
@@ -72,7 +73,9 @@ final class DetailsViewController: UIViewController {
     
     private func configure() {
         title = cats.identifier
-        imageView.loadImage(url: self.cats.imageUrl)
+        let url = cats.imageUrl
+        guard let url = url else { return }
+        imageView.kf.setImage(with: ImageResource(downloadURL: url, cacheKey: url.absoluteString))
         if cats.breeds.isEmpty {
             breedsLabel.text = "ღ Breed: unknown"
         } else {
