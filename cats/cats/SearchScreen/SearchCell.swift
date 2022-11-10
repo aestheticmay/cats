@@ -14,7 +14,7 @@ final class SearchCell: UITableViewCell {
     
     private let catImageView: UIImageView = {
         let img = UIImageView()
-        img.layer.masksToBounds = true
+        img.clipsToBounds = true
         img.contentMode = .scaleAspectFill
         img.layer.cornerRadius = 10
         return img
