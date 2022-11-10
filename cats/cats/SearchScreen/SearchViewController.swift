@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 final class SearchViewController: UIViewController {
     
@@ -135,7 +134,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else { return UITableViewCell() }
         let cat = catsModel[indexPath.row]
         cell.setup(cat)
-     //   cell.catImageView.image = nil
         return cell
     }
     

@@ -12,11 +12,11 @@ final class SearchCell: UITableViewCell {
 
     // MARK: - Private Properties
     
-    let catImageView: UIImageView = {
+    private let catImageView: UIImageView = {
         let img = UIImageView()
-        img.contentMode = .scaleAspectFit
-        img.clipsToBounds = true
-        img.layer.cornerRadius = 20
+        img.layer.masksToBounds = true
+        img.contentMode = .scaleAspectFill
+        img.layer.cornerRadius = 10
         return img
     }()
     
@@ -34,6 +34,13 @@ final class SearchCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         catImageView.image = nil
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.masksToBounds = true
+        contentMode = .scaleAspectFill
+        layer.cornerRadius = 10
     }
 
     // MARK: - Private Properties
