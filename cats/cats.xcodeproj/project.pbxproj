@@ -22,6 +22,7 @@
 		13968B7D28F9C27F0004DC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13968B7C28F9C27F0004DC10 /* Assets.xcassets */; };
 		13968B8028F9C27F0004DC10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13968B7E28F9C27F0004DC10 /* LaunchScreen.storyboard */; };
 		13968B8E28FA9F300004DC10 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B8D28FA9F300004DC10 /* RegistrationViewController.swift */; };
+		139E757A291FB56300335985 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139E7579291FB56300335985 /* APICaller.swift */; };
 		13CCBD5828FC1B260047B29D /* RegistrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5728FC1B260047B29D /* RegistrationCell.swift */; };
 		13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */; };
 		13CCBD5C28FC1DA70047B29D /* RegistrationTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5B28FC1DA70047B29D /* RegistrationTextFields.swift */; };
@@ -47,6 +48,7 @@
 		13968B7F28F9C27F0004DC10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13968B8128F9C27F0004DC10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13968B8D28FA9F300004DC10 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		139E7579291FB56300335985 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		13CCBD5728FC1B260047B29D /* RegistrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCell.swift; sourceTree = "<group>"; };
 		13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCatCell.swift; sourceTree = "<group>"; };
 		13CCBD5B28FC1DA70047B29D /* RegistrationTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextFields.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				134B20732909DCFB004A0342 /* ApiClient.swift */,
 				134B206F2909C2F5004A0342 /* CatModel.swift */,
 				138AA6F02912CDEB00D67AD4 /* BreedsModel.swift */,
+				139E7579291FB56300335985 /* APICaller.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				13CCBD5828FC1B260047B29D /* RegistrationCell.swift in Sources */,
 				134B207A290AA34C004A0342 /* SearchViewController.swift in Sources */,
 				13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */,
+				139E757A291FB56300335985 /* APICaller.swift in Sources */,
 				134B2077290A9805004A0342 /* TabBarController.swift in Sources */,
 				134B20702909C2F5004A0342 /* CatModel.swift in Sources */,
 				134B2068290826DE004A0342 /* FavoriteImageVC.swift in Sources */,

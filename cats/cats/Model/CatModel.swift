@@ -26,10 +26,10 @@ struct CatModel: Codable {
     
     // MARK: - Init + Decoding
     
-    init(from decoder: Decoder) throws {
+    /*init(from decoder: Decoder) throws {
         let value = try decoder.container(keyedBy: CodingKeys.self)
         identifier = try value.decode(String.self, forKey: .identifier)
         imageUrlString = try value.decode(String.self, forKey: .imageUrlString)
         breeds = try value.decode([BreedsModel].self, forKey: .breeds)
-    }
+    } */
 }

@@ -112,7 +112,7 @@ final class DetailsViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.width - 30)
             make.height.equalTo(UIScreen.main.bounds.width - 30)
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().inset(15)
             make.bottom.equalTo(likeButton.snp.top).inset(-15)
         }
         
