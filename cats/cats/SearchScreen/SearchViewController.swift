@@ -13,40 +13,51 @@ final class SearchViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tbv = UITableView()
-        tbv.backgroundColor = .white
+        tbv.backgroundColor = .clear
         tbv.separatorStyle = .none
         tbv.tableFooterView = UIView()
         tbv.rowHeight = UITableView.automaticDimension
-        tbv.bounces = false
-        tbv.keyboardDismissMode = .onDrag
         tbv.delaysContentTouches = false
+        tbv.keyboardDismissMode = .onDrag
         tbv.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
         return tbv
     }()
     
-    private var cats: [CatModel] = []
     private var catsModel = [CatModel]()
-    private let page = 0
     private let pageLimit = 10
+    private var page = String(1)
     
     // MARK: - Life-Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+        configureTableView()
         setupLayout()
         loadCats()
     }
     
     // MARK: - Private Methods
     
+    @objc func reloadData() {
+        loadCats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
+    
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+    }
+    
     private func getCats(completion: @escaping (Result<[CatModel], Error>) -> Void) {
         guard var components = URLComponents(string: ApiClient.ApiClientEndpoint.allCats.urlString()) else { return }
         
         var queryParameters: [String: String] = [:]
-        queryParameters["limit"] = "20"
-        queryParameters["size"] = "small"
+        queryParameters["limit"] = "5"
+        queryParameters["page"] = page
         
         components.queryItems = queryParameters.map({ (key, value) in
             URLQueryItem(name: key, value: value)
@@ -83,7 +94,7 @@ final class SearchViewController: UIViewController {
         
         dataTask?.resume()
     }
-    
+
     func fetchCats(completion: @escaping ([CatModel]?) -> Void) {
         getCats(completion: { result in
             switch result {
@@ -96,12 +107,14 @@ final class SearchViewController: UIViewController {
     }
     
     private func loadCats(breedsIds: [String] = [], completion: (() -> Void)? = nil) {
+        
         fetchCats(completion: { [weak self] cats in
             guard let actualSelf = self else {
                 return
             }
             if let actualCats = cats {
-                actualSelf.cats = actualCats
+                tableView.refreshControl?.endRefreshing()
+                actualSelf.catsModel = actualCats
                 DispatchQueue.main.async {
                     completion?()
                     actualSelf.tableView.reloadData()
@@ -118,8 +131,8 @@ final class SearchViewController: UIViewController {
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().inset(5)
+            make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview()
         }
     }
@@ -128,19 +141,26 @@ final class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cats.count
+        return catsModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else { return UITableViewCell() }
-        let cat = cats[indexPath.row]
+        let cat = catsModel[indexPath.row]
         cell.setup(cat)
-        cell.catImageView.image = nil
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailsViewController = DetailsViewController(cats: cats[indexPath.row])
+        let detailsViewController = DetailsViewController(cats: catsModel[indexPath.row])
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
+   /*
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == catsModel.count - 1 {
+            reloadData()
+            
+        }
+    
+        */
 }
