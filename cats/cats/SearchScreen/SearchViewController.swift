@@ -24,25 +24,20 @@ final class SearchViewController: UIViewController {
     }()
     
     private var catsModel = [CatModel]()
-    private let pageLimit = 10
-    private var page = String(1)
     
     // MARK: - Life-Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        fetchData(refresh: true)
         setupLayout()
-        loadCats()
     }
     
     // MARK: - Private Methods
     
     @objc func reloadData() {
-        loadCats()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.tableView.refreshControl?.endRefreshing()
-        }
+      fetchData(refresh: true)
     }
     
     private func configureTableView() {
@@ -52,77 +47,53 @@ final class SearchViewController: UIViewController {
         tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
     }
     
-    private func getCats(completion: @escaping (Result<[CatModel], Error>) -> Void) {
-        guard var components = URLComponents(string: ApiClient.ApiClientEndpoint.allCats.urlString()) else { return }
+    func fetchData(refresh: Bool = false) {
+        
+        if refresh {
+            self.tableView.refreshControl?.beginRefreshing()
+        }
+
+        guard var endpoint = URLComponents(string: (ApiClient.ApiClientEndpoint.allCats.urlString())) else { return }
+        print(endpoint)
         
         var queryParameters: [String: String] = [:]
         queryParameters["limit"] = "5"
-        queryParameters["page"] = page
-        
-        components.queryItems = queryParameters.map({ (key, value) in
+        queryParameters["size"] = "small"
+
+        endpoint.queryItems = queryParameters.map({ (key, value) in
             URLQueryItem(name: key, value: value)
         })
-        
-        guard let url = components.url else {
+
+        guard let url = endpoint.url else {
             return
         }
-        
+       
         var request = URLRequest(url: url)
-        
-        request.httpMethod = "GET"
         request.setValue(ApiClient.Identifiers.apiKey, forHTTPHeaderField: "x-api-key")
         
-        var dataTask: URLSessionDataTask?
-        let urlSession = URLSession.shared
-        
-        dataTask = urlSession.dataTask(with: request) { (data, _, error) in
-            if let actualError = error {
-                completion(.failure(actualError))
-                return
-            }
-            
-            if let actualData = data {
-                do {
-                    let decoder = JSONDecoder()
-                    let cats = try decoder.decode([CatModel].self, from: actualData)
-                    completion(.success(cats))
-                } catch let error {
-                    completion(.failure(error))
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if refresh {
+                    self.tableView.refreshControl?.endRefreshing()
+                }
+                
+                if error != nil {
+                    print(error.debugDescription)
+                    
+                } else {
+                    do {
+                        let myData = try JSONDecoder().decode([CatModel].self, from: data!)
+                        self.catsModel = myData
+                        self.tableView.reloadData()
+                    } catch let error {
+                        print(error)
+                    }
                 }
             }
         }
-        
-        dataTask?.resume()
+        task.resume()
     }
-
-    func fetchCats(completion: @escaping ([CatModel]?) -> Void) {
-        getCats(completion: { result in
-            switch result {
-            case .success(let result):
-                completion(result)
-            case .failure(_):
-                completion(nil)
-            }
-        })
-    }
-    
-    private func loadCats(breedsIds: [String] = [], completion: (() -> Void)? = nil) {
-        
-        fetchCats(completion: { [weak self] cats in
-            guard let actualSelf = self else {
-                return
-            }
-            if let actualCats = cats {
-                tableView.refreshControl?.endRefreshing()
-                actualSelf.catsModel = actualCats
-                DispatchQueue.main.async {
-                    completion?()
-                    actualSelf.tableView.reloadData()
-                }
-            }
-        })
-    }
-    
+ 
     private func setupLayout() {
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Academy Engraved LET", size: 25)!]
