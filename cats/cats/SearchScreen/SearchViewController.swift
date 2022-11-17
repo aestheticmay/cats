@@ -95,6 +95,7 @@ final class SearchViewController: UIViewController {
                         let myData = try JSONDecoder().decode([CatModel].self, from: data!)
                         self.catsModel = myData
                         self.tableView.reloadData()
+                        self.refreshControl.endRefreshing()
                     } catch let error {
                         print(error)
                     }
