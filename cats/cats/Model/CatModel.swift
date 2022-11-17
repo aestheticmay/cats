@@ -24,5 +24,5 @@ struct CatModel: Codable {
         return URL(string: imageUrlString)
     }
     let imageUrlString: String
-    var categories: [CategoryModel]
+    var categories: [CategoryModel]?
 }

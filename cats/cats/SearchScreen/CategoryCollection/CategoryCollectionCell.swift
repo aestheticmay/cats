@@ -14,7 +14,7 @@ final class CategoryCollectionCell: UICollectionViewCell {
     private let categoryLabel: UILabel = {
         let lbl = UILabel()
         lbl.numberOfLines = 0
-        lbl.text = "test"
+        lbl.textColor = UIColor.darkGray
         return lbl
     }()
     
@@ -37,7 +37,6 @@ final class CategoryCollectionCell: UICollectionViewCell {
     
     func configure(model: [CategoryModel]) {
         model.map { $0.name }.forEach { categoryLabel.text = "\($0)" }
-       // categoryLabel.text = model.name
     }
     
     // MARK: - Private Methods
@@ -47,7 +46,8 @@ final class CategoryCollectionCell: UICollectionViewCell {
         
         categoryLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
+            make.leading.greaterThanOrEqualToSuperview()
+            make.trailing.greaterThanOrEqualToSuperview()
             make.bottom.equalToSuperview().inset(10)
         }
     }

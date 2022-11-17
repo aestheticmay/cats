@@ -9,18 +9,21 @@ import UIKit
 
 final class CategoryViewController: UIView {
     
+    // MARK: - Private Properties
+
     private var catsModel = [CategoryModel]()
     
     private let categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = 15
         let cvc = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cvc.backgroundColor = .red
-        cvc.showsHorizontalScrollIndicator = false
+        cvc.showsHorizontalScrollIndicator = true
         cvc.register(CategoryCollectionCell.self, forCellWithReuseIdentifier: CategoryCollectionCell.identifier)
         return cvc
     }()
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,6 +44,8 @@ final class CategoryViewController: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private Methods
     
     private func setupLayout() {
         addSubview(categoryCollectionView)
@@ -80,12 +85,11 @@ final class CategoryViewController: UIView {
             }
         }
         task.resume()
-        
-        
     }
 }
 
 extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return catsModel.count
     }
@@ -94,10 +98,6 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionCell.identifier, for: indexPath) as! CategoryCollectionCell
         let cat = catsModel[indexPath.row]
         cell.configure(model: [cat])
-       // cell.configure(model: cat.categories)
-        cell.backgroundColor = UIColor.yellow
         return cell
     }
-    
-    
 }
