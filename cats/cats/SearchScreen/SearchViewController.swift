@@ -11,6 +11,9 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Private Properties
     
+    private var limit = 4
+    private var isRefreshed = false
+    
     private let tableView: UITableView = {
         let tbv = UITableView()
         tbv.backgroundColor = .clear
@@ -23,104 +26,83 @@ final class SearchViewController: UIViewController {
         return tbv
     }()
     
+    private let collectionView = CategoryViewController()
+    
     private var catsModel = [CatModel]()
-    private let pageLimit = 10
-    private var page = String(1)
+    private let refreshControl = UIRefreshControl()
+    
+    private lazy var activityIndicator = LoadMoreActivityIndicator(scrollView: self.tableView, spacingFromLastCell: 10, spacingFromLastCellWhenLoadMoreActionStart: 60)
     
     // MARK: - Life-Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        reloadData()
         setupLayout()
-        loadCats()
     }
     
     // MARK: - Private Methods
     
     @objc func reloadData() {
-        loadCats()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.tableView.refreshControl?.endRefreshing()
+        fetchData() { [weak self] result in
+            switch result {
+            case .success(let model):
+                self?.catsModel = model
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self?.tableView.refreshControl?.endRefreshing()
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
     }
     
-    private func getCats(completion: @escaping (Result<[CatModel], Error>) -> Void) {
-        guard var components = URLComponents(string: ApiClient.ApiClientEndpoint.allCats.urlString()) else { return }
+    private func fetchData(pageLimit: Int = 4, completion: @escaping (Result<[CatModel], Error>) -> Void) {
+        
+        guard var endpoint = URLComponents(string: (ApiClient.ApiClientEndpoint.allCats.urlString())) else { return }
         
         var queryParameters: [String: String] = [:]
-        queryParameters["limit"] = "5"
-        queryParameters["page"] = page
+        queryParameters["limit"] = String(limit)
+        queryParameters["size"] = "small"
+        //  queryParameters["page"] = "1" TODO: Add pagination
         
-        components.queryItems = queryParameters.map({ (key, value) in
+        endpoint.queryItems = queryParameters.map({ (key, value) in
             URLQueryItem(name: key, value: value)
         })
         
-        guard let url = components.url else {
+        guard let url = endpoint.url else {
             return
         }
         
         var request = URLRequest(url: url)
-        
-        request.httpMethod = "GET"
         request.setValue(ApiClient.Identifiers.apiKey, forHTTPHeaderField: "x-api-key")
         
-        var dataTask: URLSessionDataTask?
-        let urlSession = URLSession.shared
-        
-        dataTask = urlSession.dataTask(with: request) { (data, _, error) in
-            if let actualError = error {
-                completion(.failure(actualError))
-                return
-            }
-            
-            if let actualData = data {
-                do {
-                    let decoder = JSONDecoder()
-                    let cats = try decoder.decode([CatModel].self, from: actualData)
-                    completion(.success(cats))
-                } catch let error {
-                    completion(.failure(error))
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print(error.debugDescription)
+                    
+                } else {
+                    do {
+                        let myData = try JSONDecoder().decode([CatModel].self, from: data!)
+                        self.catsModel = myData
+                        self.tableView.reloadData()
+                        self.refreshControl.endRefreshing()
+                    } catch let error {
+                        print(error)
+                    }
                 }
             }
         }
-        
-        dataTask?.resume()
-    }
-
-    func fetchCats(completion: @escaping ([CatModel]?) -> Void) {
-        getCats(completion: { result in
-            switch result {
-            case .success(let result):
-                completion(result)
-            case .failure(_):
-                completion(nil)
-            }
-        })
-    }
-    
-    private func loadCats(breedsIds: [String] = [], completion: (() -> Void)? = nil) {
-        
-        fetchCats(completion: { [weak self] cats in
-            guard let actualSelf = self else {
-                return
-            }
-            if let actualCats = cats {
-                tableView.refreshControl?.endRefreshing()
-                actualSelf.catsModel = actualCats
-                DispatchQueue.main.async {
-                    completion?()
-                    actualSelf.tableView.reloadData()
-                }
-            }
-        })
+        task.resume()
     }
     
     private func setupLayout() {
@@ -128,10 +110,16 @@ final class SearchViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Academy Engraved LET", size: 25)!]
         title = "Random Cats"
         
+        view.addSubview(collectionView)
         view.addSubview(tableView)
         
+        collectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(10)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(tableView.snp.top).inset(-10)
+        }
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(5)
+            make.top.equalTo(collectionView.snp.bottom).inset(10)
             make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview()
         }
@@ -155,12 +143,27 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let detailsViewController = DetailsViewController(cats: catsModel[indexPath.row])
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
-   /*
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == catsModel.count - 1 {
-            reloadData()
-            
-        }
     
-        */
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        activityIndicator.start {
+            DispatchQueue.global(qos: .utility).async {
+                sleep(1)
+                self.isRefreshed = true
+                self.limit = 0
+                self.limit += 5
+                self.fetchData(pageLimit: self.limit) { [weak self] result in
+                    switch result {
+                    case .success(let model):
+                        self?.catsModel = model
+                        self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+                DispatchQueue.main.async { [weak self] in
+                    self?.activityIndicator.stop()
+                }
+            }
+        }
+    }
 }

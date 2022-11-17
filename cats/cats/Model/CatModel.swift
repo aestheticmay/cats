@@ -13,6 +13,7 @@ struct CatModel: Codable {
         case identifier = "id"
         case imageUrlString = "url"
         case breeds = "breeds"
+        case categories = "categories"
     }
     
     // MARK: - Public Properties
@@ -23,13 +24,5 @@ struct CatModel: Codable {
         return URL(string: imageUrlString)
     }
     let imageUrlString: String
-    
-    // MARK: - Init + Decoding
-    
-    /*init(from decoder: Decoder) throws {
-        let value = try decoder.container(keyedBy: CodingKeys.self)
-        identifier = try value.decode(String.self, forKey: .identifier)
-        imageUrlString = try value.decode(String.self, forKey: .imageUrlString)
-        breeds = try value.decode([BreedsModel].self, forKey: .breeds)
-    } */
+    var categories: [CategoryModel]?
 }
