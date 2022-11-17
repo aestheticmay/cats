@@ -16,13 +16,15 @@
 		134B2077290A9805004A0342 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B2076290A9805004A0342 /* TabBarController.swift */; };
 		134B207A290AA34C004A0342 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B2079290AA34C004A0342 /* SearchViewController.swift */; };
 		137BC90B290AC35500FD3026 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137BC90A290AC35500FD3026 /* SearchCell.swift */; };
+		13896C3A2925693F008D5FBB /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13896C392925693F008D5FBB /* CategoryCollectionCell.swift */; };
+		13896C3C29256A25008D5FBB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13896C3B29256A25008D5FBB /* CategoryModel.swift */; };
+		13896C3E29256ADC008D5FBB /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13896C3D29256ADC008D5FBB /* CategoryViewController.swift */; };
 		138AA6F12912CDEB00D67AD4 /* BreedsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138AA6F02912CDEB00D67AD4 /* BreedsModel.swift */; };
 		13968B7428F9C27D0004DC10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B7328F9C27D0004DC10 /* AppDelegate.swift */; };
 		13968B7828F9C27D0004DC10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B7728F9C27D0004DC10 /* ViewController.swift */; };
 		13968B7D28F9C27F0004DC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13968B7C28F9C27F0004DC10 /* Assets.xcassets */; };
 		13968B8028F9C27F0004DC10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13968B7E28F9C27F0004DC10 /* LaunchScreen.storyboard */; };
 		13968B8E28FA9F300004DC10 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13968B8D28FA9F300004DC10 /* RegistrationViewController.swift */; };
-		139E757A291FB56300335985 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139E7579291FB56300335985 /* APICaller.swift */; };
 		139E757C2921293000335985 /* LoadMoreActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139E757B2921293000335985 /* LoadMoreActivityIndicator.swift */; };
 		13CCBD5828FC1B260047B29D /* RegistrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5728FC1B260047B29D /* RegistrationCell.swift */; };
 		13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */; };
@@ -41,6 +43,9 @@
 		134B2076290A9805004A0342 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		134B2079290AA34C004A0342 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		137BC90A290AC35500FD3026 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		13896C392925693F008D5FBB /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
+		13896C3B29256A25008D5FBB /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		13896C3D29256ADC008D5FBB /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		138AA6F02912CDEB00D67AD4 /* BreedsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsModel.swift; sourceTree = "<group>"; };
 		13968B7028F9C27D0004DC10 /* cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13968B7328F9C27D0004DC10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +54,6 @@
 		13968B7F28F9C27F0004DC10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13968B8128F9C27F0004DC10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13968B8D28FA9F300004DC10 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		139E7579291FB56300335985 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		139E757B2921293000335985 /* LoadMoreActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreActivityIndicator.swift; sourceTree = "<group>"; };
 		13CCBD5728FC1B260047B29D /* RegistrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCell.swift; sourceTree = "<group>"; };
 		13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCatCell.swift; sourceTree = "<group>"; };
@@ -93,10 +97,10 @@
 		134B20692909BCD5004A0342 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				134B20732909DCFB004A0342 /* ApiClient.swift */,
+				13896C3F292621D2008D5FBB /* Parser */,
 				134B206F2909C2F5004A0342 /* CatModel.swift */,
 				138AA6F02912CDEB00D67AD4 /* BreedsModel.swift */,
-				139E7579291FB56300335985 /* APICaller.swift */,
+				13896C3B29256A25008D5FBB /* CategoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -120,10 +124,28 @@
 		134B2078290AA32E004A0342 /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
+				13896C3829256921008D5FBB /* CategoryCollection */,
 				134B2079290AA34C004A0342 /* SearchViewController.swift */,
 				137BC90A290AC35500FD3026 /* SearchCell.swift */,
 			);
 			path = SearchScreen;
+			sourceTree = "<group>";
+		};
+		13896C3829256921008D5FBB /* CategoryCollection */ = {
+			isa = PBXGroup;
+			children = (
+				13896C392925693F008D5FBB /* CategoryCollectionCell.swift */,
+				13896C3D29256ADC008D5FBB /* CategoryViewController.swift */,
+			);
+			path = CategoryCollection;
+			sourceTree = "<group>";
+		};
+		13896C3F292621D2008D5FBB /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				134B20732909DCFB004A0342 /* ApiClient.swift */,
+			);
+			path = Parser;
 			sourceTree = "<group>";
 		};
 		13968B6728F9C27D0004DC10 = {
@@ -318,7 +340,9 @@
 				13E48EE729191E53003171EB /* UITableViewCell.swift in Sources */,
 				139E757C2921293000335985 /* LoadMoreActivityIndicator.swift in Sources */,
 				137BC90B290AC35500FD3026 /* SearchCell.swift in Sources */,
+				13896C3C29256A25008D5FBB /* CategoryModel.swift in Sources */,
 				138AA6F12912CDEB00D67AD4 /* BreedsModel.swift in Sources */,
+				13896C3A2925693F008D5FBB /* CategoryCollectionCell.swift in Sources */,
 				134B205E28FD6504004A0342 /* RegistrationCheckList.swift in Sources */,
 				134B20652904386C004A0342 /* UIButton.swift in Sources */,
 				134B206E2909C016004A0342 /* DetailsViewController.swift in Sources */,
@@ -328,10 +352,10 @@
 				13CCBD5828FC1B260047B29D /* RegistrationCell.swift in Sources */,
 				134B207A290AA34C004A0342 /* SearchViewController.swift in Sources */,
 				13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */,
-				139E757A291FB56300335985 /* APICaller.swift in Sources */,
 				134B2077290A9805004A0342 /* TabBarController.swift in Sources */,
 				134B20702909C2F5004A0342 /* CatModel.swift in Sources */,
 				134B2068290826DE004A0342 /* FavoriteImageVC.swift in Sources */,
+				13896C3E29256ADC008D5FBB /* CategoryViewController.swift in Sources */,
 				134B20742909DCFB004A0342 /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

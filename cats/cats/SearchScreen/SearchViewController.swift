@@ -11,14 +11,8 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    enum TableSection: Int {
-        case userList
-        case loader
-    }
-    
-    private var pageLimit = 0
-    private var currentLastId: Int? = nil
-    private var isNewDataLoading = false
+    private var limit = 4
+    private var isRefreshed = false
     
     private let tableView: UITableView = {
         let tbv = UITableView()
@@ -32,10 +26,13 @@ final class SearchViewController: UIViewController {
         return tbv
     }()
     
+    private let collectionView = CategoryViewController()
+    
     private var catsModel = [CatModel]()
+    private let refreshControl = UIRefreshControl()
     
     private lazy var activityIndicator = LoadMoreActivityIndicator(scrollView: self.tableView, spacingFromLastCell: 10, spacingFromLastCellWhenLoadMoreActionStart: 60)
-
+    
     // MARK: - Life-Cycle
     
     override func viewDidLoad() {
@@ -52,6 +49,9 @@ final class SearchViewController: UIViewController {
             switch result {
             case .success(let model):
                 self?.catsModel = model
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self?.tableView.refreshControl?.endRefreshing()
+                }
             case .failure(let error):
                 print(error)
             }
@@ -61,19 +61,18 @@ final class SearchViewController: UIViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
     }
     
-    func fetchData(limit: Int = 10, completion: @escaping (Result<[CatModel], Error>) -> Void) {
-       
+    private func fetchData(pageLimit: Int = 4, completion: @escaping (Result<[CatModel], Error>) -> Void) {
+        
         guard var endpoint = URLComponents(string: (ApiClient.ApiClientEndpoint.allCats.urlString())) else { return }
-        print(endpoint)
         
         var queryParameters: [String: String] = [:]
         queryParameters["limit"] = String(limit)
         queryParameters["size"] = "small"
-      //  queryParameters["page"] = "1" TODO: Add pagination
+        //  queryParameters["page"] = "1" TODO: Add pagination
         
         endpoint.queryItems = queryParameters.map({ (key, value) in
             URLQueryItem(name: key, value: value)
@@ -104,42 +103,24 @@ final class SearchViewController: UIViewController {
         }
         task.resume()
     }
-  
-    
-    private func fetch(completed: ((Bool) -> Void)? = nil) {
-        fetchData() { [weak self] result in
-            switch result {
-            case .success(let model):
-                // 5
-                self?.catsModel.append(contentsOf: model)
-                // assign last id for next fetch
-                completed?(true)
-            case .failure(let error):
-                print(error.localizedDescription)
-                // 6
-                completed?(false)
-            }
-        }
-    }
     
     private func setupLayout() {
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Academy Engraved LET", size: 25)!]
         title = "Random Cats"
         
+        view.addSubview(collectionView)
         view.addSubview(tableView)
         
+        collectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(10)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(tableView.snp.top).inset(-10)
+        }
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(5)
+            make.top.equalTo(collectionView.snp.bottom).inset(10)
             make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview()
-        }
-    }
-    
-    private func hideBottomLoader() {
-        DispatchQueue.main.async {
-            let lastListIndexPath = IndexPath(row: self.catsModel.count - 1, section: TableSection.userList.rawValue)
-            self.tableView.scrollToRow(at: lastListIndexPath, at: .bottom, animated: true)
         }
     }
 }
@@ -166,11 +147,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         activityIndicator.start {
             DispatchQueue.global(qos: .utility).async {
                 sleep(1)
-                self.pageLimit += 10
-                self.fetchData(limit: self.pageLimit) { [weak self] result in
+                self.isRefreshed = true
+                self.limit = 0
+                self.limit += 5
+                self.fetchData(pageLimit: self.limit) { [weak self] result in
                     switch result {
                     case .success(let model):
                         self?.catsModel = model
+                        self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                     case .failure(let error):
                         print(error)
                     }

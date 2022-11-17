@@ -21,6 +21,7 @@ class ApiClient {
         case breeds
         case favourites
         case uploads
+        case categories
         
         func urlString() -> String {
             switch self {
@@ -32,6 +33,8 @@ class ApiClient {
                 return "\(Identifiers.baseDomen)/favourites"
             case .uploads:
                 return "\(Identifiers.baseDomen)/images/upload"
+            case .categories:
+                return "\(Identifiers.baseDomen)/categories"
             }
         }
     }
