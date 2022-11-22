@@ -9,5 +9,6 @@ import Foundation
 
 struct CategoryModel: Codable {
 
+    var id: Int
     var name: String
 }
