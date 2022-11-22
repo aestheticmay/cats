@@ -31,6 +31,7 @@
 		13CCBD5A28FC1C900047B29D /* RegistrationCatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */; };
 		13CCBD5C28FC1DA70047B29D /* RegistrationTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CCBD5B28FC1DA70047B29D /* RegistrationTextFields.swift */; };
 		13E48EE729191E53003171EB /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E48EE629191E53003171EB /* UITableViewCell.swift */; };
+		13FB2B12292D44BC00375209 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FB2B11292D44BC00375209 /* FavoritesViewController.swift */; };
 		ED8F0576BED1F041F0EFFC33 /* Pods_cats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7052A56935B9924CBDA712 /* Pods_cats.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		13CCBD5928FC1C900047B29D /* RegistrationCatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCatCell.swift; sourceTree = "<group>"; };
 		13CCBD5B28FC1DA70047B29D /* RegistrationTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextFields.swift; sourceTree = "<group>"; };
 		13E48EE629191E53003171EB /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
+		13FB2B11292D44BC00375209 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		3C4B43AB8CBF58F74A655C3B /* Pods-cats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cats.release.xcconfig"; path = "Target Support Files/Pods-cats/Pods-cats.release.xcconfig"; sourceTree = "<group>"; };
 		71DCC45F6F080D8D8897D7B7 /* Pods-cats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cats.debug.xcconfig"; path = "Target Support Files/Pods-cats/Pods-cats.debug.xcconfig"; sourceTree = "<group>"; };
 		DA7052A56935B9924CBDA712 /* Pods_cats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +174,7 @@
 		13968B7228F9C27D0004DC10 /* cats */ = {
 			isa = PBXGroup;
 			children = (
+				13FB2B10292D44A800375209 /* FavoritesScreen */,
 				134B2078290AA32E004A0342 /* SearchScreen */,
 				134B2075290A97F4004A0342 /* TabBar */,
 				134B206C2909C000004A0342 /* Details */,
@@ -206,6 +209,14 @@
 				13968B8D28FA9F300004DC10 /* RegistrationViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		13FB2B10292D44A800375209 /* FavoritesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				13FB2B11292D44BC00375209 /* FavoritesViewController.swift */,
+			);
+			path = FavoritesScreen;
 			sourceTree = "<group>";
 		};
 		A462C977E8139610B739BEC9 /* Frameworks */ = {
@@ -359,6 +370,7 @@
 				134B2077290A9805004A0342 /* TabBarController.swift in Sources */,
 				134B20702909C2F5004A0342 /* CatModel.swift in Sources */,
 				134B2068290826DE004A0342 /* FavoriteImageVC.swift in Sources */,
+				13FB2B12292D44BC00375209 /* FavoritesViewController.swift in Sources */,
 				13896C3E29256ADC008D5FBB /* CategoryViewController.swift in Sources */,
 				134B20742909DCFB004A0342 /* ApiClient.swift in Sources */,
 			);
