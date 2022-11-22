@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = UITabBarController()
         navigationSearch.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        tabBarController.tabBar.backgroundColor = UIColor.white
      //   navigationDetails.tabBarItem = UITabBarItem(tabBarSystemItem: .recents, tag: 1)
         
         tabBarController.viewControllers = [navigationSearch]
