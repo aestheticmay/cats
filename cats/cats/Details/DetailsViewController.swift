@@ -38,6 +38,7 @@ final class DetailsViewController: UIViewController {
         btn.setImage(like, for: .selected)
         btn.imageView?.contentMode = .scaleAspectFit
         btn.tintColor = UIColor.red
+        btn.addTarget(self, action: #selector(onButtonTap), for: .touchUpInside)
         return btn
     }()
     
@@ -70,6 +71,11 @@ final class DetailsViewController: UIViewController {
     }
     
     // MARK: - Private Methods
+    
+    @objc func onButtonTap(sender: UIButton) {
+        let viewController = FavoritesViewController()
+        viewController.postRequest(id: cats.identifier)
+    }
     
     private func configure() {
         title = cats.identifier

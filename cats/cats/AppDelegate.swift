@@ -16,23 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        configureControllers()
+       // configureControllers()
+        let tabBarController = TabBarController()
+        window?.rootViewController = tabBarController
         
         return true
     }
     
     private func configureControllers() {
-        let searchVC = SearchViewController()
+        // let searchVC = SearchViewController()
       //  let detailsVC = DetailsViewController()
-        let navigationSearch = UINavigationController(rootViewController: searchVC)
+        // let navigationSearch = UINavigationController(rootViewController: searchVC)
      //   let navigationDetails = UINavigationController(rootViewController: detailsVC)
         
-        let tabBarController = UITabBarController()
-        navigationSearch.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+      //  let tabBarController = UITabBarController()
+      //  navigationSearch.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
      //   navigationDetails.tabBarItem = UITabBarItem(tabBarSystemItem: .recents, tag: 1)
         
-        tabBarController.viewControllers = [navigationSearch]
-        window?.rootViewController = tabBarController
+      //  tabBarController.viewControllers = [navigationSearch]
+      //  window?.rootViewController = tabBarController
     }
 }
 
