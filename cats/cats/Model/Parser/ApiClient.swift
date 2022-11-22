@@ -22,6 +22,7 @@ class ApiClient {
         case favourites
         case uploads
         case categories
+        case categoriesIDs(id: String)
         
         func urlString() -> String {
             switch self {
@@ -35,6 +36,8 @@ class ApiClient {
                 return "\(Identifiers.baseDomen)/images/upload"
             case .categories:
                 return "\(Identifiers.baseDomen)/categories"
+            case .categoriesIDs(let id):
+                return "\(Identifiers.baseDomen)/images/search?category_ids=\(id)"
             }
         }
     }

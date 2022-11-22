@@ -100,4 +100,11 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         cell.configure(model: [cat])
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("tap")
+        let searchViewController = SearchViewController()
+        let cat = catsModel[indexPath.row]
+        searchViewController.fetchCategoryData(categoryID: cat.id)
+    }
 }
