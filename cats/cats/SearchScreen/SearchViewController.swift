@@ -11,9 +11,6 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private var limit = 4
-    private var isRefreshed = false
-    
     private let tableView: UITableView = {
         let tbv = UITableView()
         tbv.backgroundColor = .clear
@@ -29,10 +26,7 @@ final class SearchViewController: UIViewController {
     private let collectionView = CategoryViewController()
     
     private var catsModel = [CatModel]()
-    private let refreshControl = UIRefreshControl()
-    
-    private lazy var activityIndicator = LoadMoreActivityIndicator(scrollView: self.tableView, spacingFromLastCell: 10, spacingFromLastCellWhenLoadMoreActionStart: 60)
-    
+
     // MARK: - Life-Cycle
     
     override func viewDidLoad() {
@@ -45,34 +39,20 @@ final class SearchViewController: UIViewController {
     // MARK: - Private Methods
     
     @objc func reloadData() {
-        fetchData() { [weak self] result in
-            switch result {
-            case .success(let model):
-                self?.catsModel = model
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    self?.tableView.refreshControl?.endRefreshing()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+        fetchData()
     }
     
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
     }
     
-    private func fetchData(pageLimit: Int = 4, completion: @escaping (Result<[CatModel], Error>) -> Void) {
-        
+    private func fetchData() {
         guard var endpoint = URLComponents(string: (ApiClient.ApiClientEndpoint.allCats.urlString())) else { return }
         
         var queryParameters: [String: String] = [:]
-        queryParameters["limit"] = String(limit)
         queryParameters["size"] = "small"
-        //  queryParameters["page"] = "1" TODO: Add pagination
+        queryParameters["limit"] = "10"
         
         endpoint.queryItems = queryParameters.map({ (key, value) in
             URLQueryItem(name: key, value: value)
@@ -95,7 +75,6 @@ final class SearchViewController: UIViewController {
                         let myData = try JSONDecoder().decode([CatModel].self, from: data!)
                         self.catsModel = myData
                         self.tableView.reloadData()
-                        self.refreshControl.endRefreshing()
                     } catch let error {
                         print(error)
                     }
@@ -142,28 +121,5 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsViewController = DetailsViewController(cats: catsModel[indexPath.row])
         navigationController?.pushViewController(detailsViewController, animated: true)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        activityIndicator.start {
-            DispatchQueue.global(qos: .utility).async {
-                sleep(1)
-                self.isRefreshed = true
-                self.limit = 0
-                self.limit += 5
-                self.fetchData(pageLimit: self.limit) { [weak self] result in
-                    switch result {
-                    case .success(let model):
-                        self?.catsModel = model
-                        self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
-                DispatchQueue.main.async { [weak self] in
-                    self?.activityIndicator.stop()
-                }
-            }
-        }
     }
 }
