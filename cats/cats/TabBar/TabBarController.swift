@@ -13,9 +13,8 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private let searchViewController = SearchViewController()
     private let firstItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-    
     private let favoritesViewController = FavoritesViewController()
-    private let secondItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart"), selectedImage: UIImage(systemName: "heart.fill"))
+    private let secondItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
     
     // MARK: - Life-Cycle
     
