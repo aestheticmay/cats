@@ -55,7 +55,7 @@ final class SearchCell: UITableViewCell {
         addSubview(catImageView)
         
         catImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().inset(20)
             make.leading.trailing.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.width)
             make.height.equalTo(200)

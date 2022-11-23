@@ -1,34 +1,25 @@
 //
-//  SearchViewController.swift
+//  CategoryViewController.swift
 //  cats
 //
-//  Created by Майя Калицева on 27.10.2022.
+//  Created by Майя Калицева on 23.11.2022.
 //
 
 import UIKit
 
-final class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
+final class CategoryViewController: UIViewController {
     
     // MARK: - Private Properties
     
     private let tableView: UITableView = {
         let tbv = UITableView(frame: .zero, style: .grouped)
-        tbv.backgroundColor = UIColor.white
+        tbv.backgroundColor = .clear
         tbv.separatorStyle = .none
         tbv.rowHeight = UITableView.automaticDimension
         tbv.delaysContentTouches = false
         tbv.keyboardDismissMode = .onDrag
-        tbv.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
+        tbv.register(CategoryTableCell.self, forCellReuseIdentifier: CategoryTableCell.identifier)
         return tbv
-    }()
-    
-    private let categoryButton: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("Category", for: .normal)
-        btn.setTitleColor(UIColor.white, for: .normal)
-        btn.backgroundColor = UIColor.black
-        btn.addTarget(self, action: #selector(showCategories), for: .touchUpInside)
-        return btn
     }()
     
     private var catsModel = [CatModel]()
@@ -48,19 +39,13 @@ final class SearchViewController: UIViewController, UIGestureRecognizerDelegate 
         fetchData()
     }
     
-    @objc func showCategories() {
-        print("tap")
-        let viewController = CategoryTableViewController()
-        viewController.modalPresentationStyle = .overFullScreen
-        present(viewController, animated: true)
-    }
-    
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
     }
     
     private func fetchData() {
+        
         guard var endpoint = URLComponents(string: (ApiClient.ApiClientEndpoint.allCats.urlString())) else { return }
         
         var queryParameters: [String: String] = [:]
@@ -103,19 +88,10 @@ final class SearchViewController: UIViewController, UIGestureRecognizerDelegate 
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Academy Engraved LET", size: 25)!]
         title = "Random Cats"
         
-        view.addSubview(categoryButton)
         view.addSubview(tableView)
         
-        categoryButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(tableView.snp.top).inset(-10)
-            make.height.equalTo(50)
-            
-        }
-    
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(categoryButton.snp.bottom).inset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview()
         }
@@ -139,4 +115,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let detailsViewController = DetailsViewController(cats: catsModel[indexPath.row])
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CategoryHeaderView.identifier)
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
 }
+
